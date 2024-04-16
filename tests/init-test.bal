@@ -1,33 +1,4 @@
-// Copyright (c) 2024 WSO2 LLC. (http://www.wso2.com) All Rights Reserved.
-//
-// WSO2 LLC. licenses this file to you under the Apache License,
-// Version 2.0 (the "License"); you may not use this file except
-// in compliance with the License.
-// You may obtain a copy of the License at
-//
-// http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing,
-// software distributed under the License is distributed on an
-// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-// KIND, either express or implied.  See the License for the
-// specific language governing permissions and limitations
-// under the License.
-// import ballerina/test;
 import ballerina/time;
-// import ballerinax/redis;
-import Test_Suite.db;
-
-// configurable redis:ConnectionConfig & readonly connectionConfig = ?;
-// configurable record {|
-//     int maxAge;
-// |} & readonly cacheConfig = ?;
-
-// @test:BeforeSuite
-// function initTests() returns error? {
-//     redis:Client redisDbClient = check new (connectionConfig);
-//     _ = check redisDbClient.close();
-// }
 
 AllTypes allTypes1 = {
     id: 1,
@@ -321,15 +292,6 @@ OrderItemExtended orderItemExtended2 = {
     orderType: ONLINE
 };
 
-public type EmployeeInfo record {|
-    string firstName;
-    string lastName;
-    record {|
-        string deptName;
-    |} department;
-    db:Workspace workspace?;
-|};
-
 OrderItemExtended orderItemExtended2Retrieved = {
     orderId: "order-2",
     itemId: "item-2",
@@ -375,147 +337,6 @@ public type DepartmentInfo record {|
     |}[] employees;
 |};
 
-public type WorkspaceInfo record {|
-    string workspaceType;
-    db:Building location;
-    db:Employee[] employees;
-|};
-
-public type BuildingInfo record {|
-    string buildingCode;
-    string city;
-    string state;
-    string country;
-    string postalCode;
-    string 'type;
-    db:Workspace[] workspaces;
-|};
-
-db:Building building1 = {
-    buildingCode: "building-1",
-    city: "Colombo",
-    state: "Western Province",
-    country: "Sri Lanka",
-    postalCode: "10370",
-    'type: "rented"
-};
-
-db:Building invalidBuilding = {
-    buildingCode: "building-invalid-extra-characters-to-force-failure",
-    city: "Colombo",
-    state: "Western Province",
-    country: "Sri Lanka",
-    postalCode: "10370",
-    'type: "owned"
-};
-
-db:BuildingInsert building2 = {
-    buildingCode: "building-2",
-    city: "Manhattan",
-    state: "New York",
-    country: "USA",
-    postalCode: "10570",
-    'type: "owned"
-};
-
-db:BuildingInsert building3 = {
-    buildingCode: "building-3",
-    city: "London",
-    state: "London",
-    country: "United Kingdom",
-    postalCode: "39202",
-    'type: "rented"
-};
-
-db:Building updatedBuilding1 = {
-    buildingCode: "building-1",
-    city: "Galle",
-    state: "Southern Province",
-    country: "Sri Lanka",
-    postalCode: "10890",
-    'type: "owned"
-};
-
-db:Department department1 = {
-    deptNo: "department-1",
-    deptName: "Finance"
-};
-
-db:Department invalidDepartment = {
-    deptNo: "invalid-department-extra-characters-to-force-failure",
-    deptName: "Finance"
-};
-
-db:Department department2 = {
-    deptNo: "department-2",
-    deptName: "Marketing"
-};
-
-db:Department department3 = {
-    deptNo: "department-3",
-    deptName: "Engineering"
-};
-
-db:Department updatedDepartment1 = {
-    deptNo: "department-1",
-    deptName: "Finance & Legalities"
-};
-
-db:Employee employee1 = {
-    empNo: "employee-1",
-    firstName: "Tom",
-    lastName: "Scott",
-    birthDate: {year: 1992, month: 11, day: 13},
-    gender: db:MALE,
-    hireDate: {year: 2022, month: 8, day: 1},
-    departmentDeptNo: "department-2",
-    workspaceWorkspaceId: "workspace-2"
-};
-
-db:Employee invalidEmployee = {
-    empNo: "invalid-employee-no-extra-characters-to-force-failure",
-    firstName: "Tom",
-    lastName: "Scott",
-    birthDate: {year: 1992, month: 11, day: 13},
-    gender: db:MALE,
-    hireDate: {year: 2022, month: 8, day: 1},
-    departmentDeptNo: "department-2",
-    workspaceWorkspaceId: "workspace-2"
-};
-
-db:Employee employee2 = {
-    empNo: "employee-2",
-    firstName: "Jane",
-    lastName: "Doe",
-    birthDate: {year: 1996, month: 9, day: 15},
-    gender: db:FEMALE,
-    hireDate: {year: 2022, month: 6, day: 1},
-    departmentDeptNo: "department-2",
-    workspaceWorkspaceId: "workspace-2"
-};
-
-db:Employee employee3 = {
-    empNo: "employee-3",
-    firstName: "Hugh",
-    lastName: "Smith",
-    birthDate: {year: 1986, month: 9, day: 15},
-    gender: db:FEMALE,
-    hireDate: {year: 2021, month: 6, day: 1},
-    departmentDeptNo: "department-3",
-    workspaceWorkspaceId: "workspace-3"
-};
-
-db:Employee updatedEmployee1 = {
-    empNo: "employee-1",
-    firstName: "Tom",
-    lastName: "Jones",
-    birthDate: {year: 1994, month: 11, day: 13},
-    gender: db:MALE,
-    hireDate: {year: 2022, month: 8, day: 1},
-    departmentDeptNo: "department-3",
-    workspaceWorkspaceId: "workspace-2"
-};
-
 public type IntIdRecordDependent record {|
     string randomField;
 |};
@@ -552,36 +373,6 @@ public type CompositeAssociationRecordDependent record {|
     |} allTypesIdRecord;
 |};
 
-db:Workspace workspace1 = {
-    workspaceId: "workspace-1",
-    workspaceType: "small",
-    locationBuildingCode: "building-2"
-};
-
-db:Workspace invalidWorkspace = {
-    workspaceId: "invalid-workspace-extra-characters-to-force-failure",
-    workspaceType: "small",
-    locationBuildingCode: "building-2"
-};
-
-db:Workspace workspace2 = {
-    workspaceId: "workspace-2",
-    workspaceType: "medium",
-    locationBuildingCode: "building-2"
-};
-
-db:Workspace workspace3 = {
-    workspaceId: "workspace-3",
-    workspaceType: "large",
-    locationBuildingCode: "building-2"
-};
-
-db:Workspace updatedWorkspace1 = {
-    workspaceId: "workspace-1",
-    workspaceType: "large",
-    locationBuildingCode: "building-2"
-};
-
 public type EmployeeName record {|
     string firstName;
     string lastName;
@@ -610,195 +401,6 @@ public type BuildingInfo2 record {|
     string postalCode;
     string 'type;
 |};
-
-db:OrderItem orderItem1 = {
-    orderId: "order-1",
-    itemId: "item-1",
-    quantity: 5,
-    notes: "none"
-};
-
-db:OrderItem orderItem2 = {
-    orderId: "order-2",
-    itemId: "item-2",
-    quantity: 10,
-    notes: "more"
-};
-
-db:OrderItem orderItem2Updated = {
-    orderId: "order-2",
-    itemId: "item-2",
-    quantity: 20,
-    notes: "more than more"
-};
-
-db:Building building31 = {
-    buildingCode: "building-31",
-    city: "Colombo",
-    state: "Western Province",
-    country: "Sri Lanka",
-    postalCode: "10370",
-    'type: "rented"
-};
-
-db:BuildingInsert building32 = {
-    buildingCode: "building-32",
-    city: "Manhattan",
-    state: "New York",
-    country: "USA",
-    postalCode: "10570",
-    'type: "owned"
-};
-
-db:BuildingInsert building33 = {
-    buildingCode: "building-33",
-    city: "Manhattan",
-    state: "New York",
-    country: "USA",
-    postalCode: "10570",
-    'type: "owned"
-};
-
-db:Building building33Updated = {
-    buildingCode: "building-33",
-    city: "ColomboUpdated",
-    state: "Western ProvinceUpdated",
-    country: "Sri LankaUpdated",
-    postalCode: "10570",
-    'type: "owned"
-};
-
-db:Department departmentNative1 = {
-    deptNo: "department-native-1",
-    deptName: "Finance"
-};
-
-db:Department departmentNative2 = {
-    deptNo: "department-native-2",
-    deptName: "HR"
-};
-
-db:Department departmentNative3 = {
-    deptNo: "department-native-3",
-    deptName: "Marketing"
-};
-
-db:Building buildingNative1 = {
-    buildingCode: "building-native-1",
-    city: "Colombo",
-    state: "Western",
-    country: "Sri Lanka",
-    postalCode: "10370",
-    'type: "office"
-};
-
-db:Building buildingNative2 = {
-    buildingCode: "building-native-2",
-    city: "Kandy",
-    state: "Central",
-    country: "Sri Lanka",
-    postalCode: "20000",
-    'type: "coworking space"
-};
-
-db:Building buildingNative3 = {
-    buildingCode: "building-native-3",
-    city: "San Francisco",
-    state: "California",
-    country: "USA",
-    postalCode: "80000",
-    'type: "office"
-};
-
-db:Workspace workspaceNative1 = {
-    workspaceId: "workspace-native-1",
-    workspaceType: "hot seat",
-    locationBuildingCode: "building-native-2"
-};
-
-db:Workspace workspaceNative2 = {
-    workspaceId: "workspace-native-2",
-    workspaceType: "dedicated",
-    locationBuildingCode: "building-native-2"
-};
-
-db:Workspace workspaceNative3 = {
-    workspaceId: "workspace-native-3",
-    workspaceType: "hot seat",
-    locationBuildingCode: "building-native-3"
-};
-
-db:Employee employeeNative1 = {
-    empNo: "employee-native-1",
-    firstName: "John",
-    lastName: "Doe",
-    birthDate: {year: 1994, month: 10, day: 30},
-    gender: db:MALE,
-    hireDate: {year: 2020, month: 10, day: 30},
-    departmentDeptNo: "department-native-1",
-    workspaceWorkspaceId: "workspace-native-1"
-};
-
-db:Employee employeeNative2 = {
-    empNo: "employee-native-2",
-    firstName: "Jane",
-    lastName: "Doe",
-    birthDate: {year: 1996, month: 8, day: 12},
-    gender: db:FEMALE,
-    hireDate: {year: 2021, month: 10, day: 30},
-    departmentDeptNo: "department-native-2",
-    workspaceWorkspaceId: "workspace-native-2"
-};
-
-db:Employee employeeNative3 = {
-    empNo: "employee-native-3",
-    firstName: "Sam",
-    lastName: "Smith",
-    birthDate: {year: 1991, month: 8, day: 12},
-    gender: db:MALE,
-    hireDate: {year: 2019, month: 10, day: 30},
-    departmentDeptNo: "department-native-3",
-    workspaceWorkspaceId: "workspace-native-3"
-};
-
-EmployeeInfo employeeInfoNative1 = {
-    firstName: "John",
-    lastName: "Doe",
-    department: {
-        deptName: "Finance"
-    },
-    workspace: {
-        workspaceId: "workspace-native-1",
-        workspaceType: "hot seat",
-        locationBuildingCode: "building-native-2"
-    }
-};
-
-EmployeeInfo employeeInfoNative2 = {
-    firstName: "Jane",
-    lastName: "Doe",
-    department: {
-        deptName: "HR"
-    },
-    workspace: {
-        workspaceId: "workspace-native-2",
-        workspaceType: "dedicated",
-        locationBuildingCode: "building-native-2"
-    }
-};
-
-EmployeeInfo employeeInfoNative3 = {
-    firstName: "Sam",
-    lastName: "Smith",
-    department: {
-        deptName: "Marketing"
-    },
-    workspace: {
-        workspaceId: "workspace-native-3",
-        workspaceType: "hot seat",
-        locationBuildingCode: "building-native-3"
-    }
-};
 
 public type PersonWithAssociations record {|
     int id;
@@ -882,68 +484,68 @@ PersonWithAssociations person1WithAssociations = {
     ]
 };
 
-// PersonWithAssoc person1WithAssoc = {
-//     id: 1,
-//     name: "Jane",
-//     soldBuildings: [{code: "B001"}]
-// };
+PersonWithAssoc person1WithAssoc = {
+    id: 1,
+    name: "Jane",
+    soldBuildings: [{code: "B001"}]
+};
 
-// PersonWithAssoc person1WithoutAssoc = {
-//     id: 1,
-//     name: "Jane",
-//     soldBuildings: []
-// };
+PersonWithAssoc person1WithoutAssoc = {
+    id: 1,
+    name: "Jane",
+    soldBuildings: []
+};
 
-// PersonWithAssoc[] peopleWithAssoc = [
-//     {
-//         id: 1,
-//         name: "Jane",
-//         soldBuildings: [{code: "B001"}]
-//     },
-//     {
-//         id: 2,
-//         name: "Mike",
-//         soldBuildings: []
-//     }
-// ];
+PersonWithAssoc[] peopleWithAssoc = [
+    {
+        id: 1,
+        name: "Jane",
+        soldBuildings: [{code: "B001"}]
+    },
+    {
+        id: 2,
+        name: "Mike",
+        soldBuildings: []
+    }
+];
 
-// ApartmentWithAssoc[] apartmentsWithAssoc = [
-//     {
-//         code: "B001",
-//         city: "New York",
-//         state: "New York",
-//         soldPerson: {id: 1, name: "Jane"}
-//     }
-// ];
+ApartmentWithAssoc[] apartmentsWithAssoc = [
+    {
+        code: "B001",
+        city: "New York",
+        state: "New York",
+        soldPerson: {id: 1, name: "Jane"}
+    }
+];
 
-// ApartmentWithAssoc apartment1WithPerson = {
-//     code: "B001",
-//     city: "New York",
-//     state: "New York",
-//     soldPerson: {id: 1, name: "Jane"}
-// };
+ApartmentWithAssoc apartment1WithPerson = {
+    code: "B001",
+    city: "New York",
+    state: "New York",
+    soldPerson: {id: 1, name: "Jane"}
+};
 
-// ApartmentWithAssoc apartment1WithPersonUpdated = {
-//     code: "B001",
-//     city: "New Jursey",
-//     state: "New York",
-//     soldPerson: {id: 1, name: "Mike"}
-// };
+ApartmentWithAssoc apartment1WithPersonUpdated = {
+    code: "B001",
+    city: "New Jursey",
+    state: "New York",
+    soldPerson: {id: 1, name: "Mike"}
+};
 
-// PersonWithAssoc person1OnlyPerson = {
-//     id: 1,
-//     name: "Jane",
-//     soldBuildings: []
-// };
+PersonWithAssoc person1OnlyPerson = {
+    id: 1,
+    name: "Jane",
+    soldBuildings: []
+};
 
-// PersonWithAssoc person1WithAssocUpdated = {
-//     id: 1,
-//     name: "Mike",
-//     soldBuildings: []
-// };
+PersonWithAssoc person1WithAssocUpdated = {
+    id: 1,
+    name: "Mike",
+    soldBuildings: []
+};
 
-// PersonWithAssoc person1WithAssocUpdated2 = {
-//     id: 1,
-//     name: "Mike",
-//     soldBuildings: [{code: "B001"}]
-// };
+PersonWithAssoc person1WithAssocUpdated2 = {
+    id: 1,
+    name: "Mike",
+    soldBuildings: [{code: "B001"}]
+};
