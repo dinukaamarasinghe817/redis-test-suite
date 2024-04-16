@@ -1,56 +1,74 @@
 import ballerina/persist as _;
 import ballerina/time;
 
-enum Gender {
-    MALE,
-    FEMALE
+enum EnumType {
+    TYPE_1,
+    TYPE_2,
+    TYPE_3,
+    TYPE_4
 }
 
-type Employee record {|
-    readonly string empNo;
-    string firstName;
-    string lastName;
-    time:Date birthDate;
-    Gender gender;
-    time:Date hireDate;
-
-    Department department;
-    Workspace workspace;
+type AllTypes record {|
+    readonly int id;
+    boolean booleanType;
+    int intType;
+    float floatType;
+    decimal decimalType;
+    string stringType;
+    time:Date dateType;
+    time:TimeOfDay timeOfDayType;
+    time:Utc utcType;
+    time:Civil civilType;
+    EnumType enumType;
+    boolean booleanTypeOptional?;
+    int intTypeOptional?;
+    float floatTypeOptional?;
+    decimal decimalTypeOptional?;
+    string stringTypeOptional?;
+    time:Date dateTypeOptional?;
+    time:TimeOfDay timeOfDayTypeOptional?;
+    time:Utc utcTypeOptional?;
+    time:Civil civilTypeOptional?;
+    EnumType enumTypeOptional?;
 |};
 
-type Workspace record {|
-    readonly string workspaceId;
-    string workspaceType;
-
-    Building location;
-    Employee[] employees;
+type StringIdRecord record {|
+    readonly string id;
+    string randomField;
 |};
 
-type Building record {|
-    readonly string buildingCode;
-    string city;
-    string state;
-    string country;
-    string postalCode;
-    string 'type;
-
-    Workspace[] workspaces;
+type IntIdRecord record {|
+    readonly int id;
+    string randomField;
 |};
 
-type Department record {|
-    readonly string deptNo;
-    string deptName;
-
-    Employee[] employees;
+type FloatIdRecord record {|
+    readonly float id;
+    string randomField;
 |};
 
-type OrderItem record {|
-    readonly string orderId;
-    readonly string itemId;
-    int quantity;
-    string notes;
+type DecimalIdRecord record {|
+    readonly decimal id;
+    string randomField;
 |};
 
+type BooleanIdRecord record {|
+    readonly boolean id;
+    string randomField;
+|};
 
+type CompositeAssociationRecord record {|
+    readonly string id;
+    string randomField;
+    AllTypesIdRecord allTypesIdRecord;
+|};
 
-
+type AllTypesIdRecord record {|
+    readonly boolean booleanType;
+    readonly int intType;
+    readonly float floatType;
+    readonly decimal decimalType;
+    readonly string stringType;
+    string randomField;
+    CompositeAssociationRecord? compositeAssociationRecord;
+|};
