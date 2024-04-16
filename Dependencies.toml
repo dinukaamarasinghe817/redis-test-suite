@@ -186,6 +186,9 @@ version = "0.0.0"
 dependencies = [
 	{org = "ballerina", name = "jballerina.java"}
 ]
+modules = [
+	{org = "ballerina", packageName = "lang.runtime", moduleName = "lang.runtime"}
+]
 
 [[package]]
 org = "ballerina"
@@ -355,6 +358,7 @@ version = "0.1.0"
 dependencies = [
 	{org = "ballerina", name = "http"},
 	{org = "ballerina", name = "jballerina.java"},
+	{org = "ballerina", name = "lang.runtime"},
 	{org = "ballerina", name = "persist"},
 	{org = "ballerina", name = "test"},
 	{org = "ballerina", name = "time"},
@@ -366,10 +370,4 @@ modules = [
 	{org = "dinuka_amarasinghe", packageName = "Test_Suite", moduleName = "Test_Suite"},
 	{org = "dinuka_amarasinghe", packageName = "Test_Suite", moduleName = "Test_Suite.db"}
 ]
-
-[[tool]]
-id = "persist"
-org = "ballerina"
-name = "tool_persist"
-version = "0.0.0"
 

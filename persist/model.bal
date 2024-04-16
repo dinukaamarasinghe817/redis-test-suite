@@ -1,56 +1,21 @@
 import ballerina/persist as _;
-import ballerina/time;
 
-enum Gender {
-    MALE,
-    FEMALE
-}
+type Person record {|
+    readonly int id;
+    string name;
 
-type Employee record {|
-    readonly string empNo;
-    string firstName;
-    string lastName;
-    time:Date birthDate;
-    Gender gender;
-    time:Date hireDate;
-
-    Department department;
-    Workspace workspace;
+    Apartment[] soldBuildings;
+    Apartment[] ownBuildings;
 |};
 
-type Workspace record {|
-    readonly string workspaceId;
-    string workspaceType;
-
-    Building location;
-    Employee[] employees;
-|};
-
-type Building record {|
-    readonly string buildingCode;
+type Apartment record {|
+    readonly string code;
     string city;
     string state;
     string country;
     string postalCode;
     string 'type;
 
-    Workspace[] workspaces;
+    Person soldPerson;
+    Person ownPerson;
 |};
-
-type Department record {|
-    readonly string deptNo;
-    string deptName;
-
-    Employee[] employees;
-|};
-
-type OrderItem record {|
-    readonly string orderId;
-    readonly string itemId;
-    int quantity;
-    string notes;
-|};
-
-
-
-
