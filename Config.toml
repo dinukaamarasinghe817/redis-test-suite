@@ -1,0 +1,7 @@
+[Test_Suite.db.connectionConfig]
+connection = "redis://localhost:6379"
+
+[Test_Suite.db.cacheConfig]
+maxAge = -1
+
+

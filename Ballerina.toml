@@ -1,0 +1,20 @@
+[package]
+org = "dinuka_amarasinghe"
+name = "Test_Suite"
+version = "0.1.0"
+distribution = "2201.9.0-20240410-095500-2653a74d"
+
+[build-options]
+observabilityIncluded = true
+
+[[tool.persist]]
+id = "generate-db-client"
+targetModule = "Test_Suite.db"
+options.datastore = "redis"
+filePath = "persist/model.bal"
+
+[[platform.java17.dependency]]
+groupId = "io.ballerina.lib"
+artifactId = "persist.redis-native"
+version = "0.1.0-SNAPSHOT"
+
