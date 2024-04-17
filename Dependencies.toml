@@ -367,9 +367,3 @@ modules = [
 	{org = "dinuka_amarasinghe", packageName = "Test_Suite", moduleName = "Test_Suite.db"}
 ]
 
-[[tool]]
-id = "persist"
-org = "ballerina"
-name = "tool_persist"
-version = "0.0.0"
-
